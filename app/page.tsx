@@ -1,6 +1,6 @@
 "use client";
 
-import { LoadingIcon } from "@/lib/icons";
+import { LoadingIcon } from "../lib/icons";
 import { ChangeEvent, useState } from "react";
 import pdfToText from "react-pdftotext";
 import useJobStore from "../store/useJobStore";

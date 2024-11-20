@@ -7,7 +7,7 @@ import { EnterIcon, LoadingIcon } from "@/lib/icons";
 import { usePlayer } from "@/lib/usePlayer";
 import { track } from "@vercel/analytics";
 import { useMicVAD, utils } from "@ricky0123/vad-react";
-import useJobStore from "../../store/useJobStore";
+import useJobStore from "@/store/useJobStore";
 import { useRouter } from "next/navigation";
 
 type Message = {
