@@ -2,7 +2,6 @@
 
 import { LoadingIcon } from "../lib/icons";
 import { ChangeEvent, useState } from "react";
-import pdfToText from "react-pdftotext";
 import useJobStore from "../store/useJobStore";
 import { useRouter } from "next/navigation";
 
@@ -36,7 +35,7 @@ export default function Home() {
 
     try {
       if (!resumeFile) throw new Error("No resume selected");
-      const resumeContent = await pdfToText(resumeFile);
+      const resumeContent = "abcd";
       setJobState({
         jobRole: formValues.jobRole,
         jobDesc: formValues.jobDesc,

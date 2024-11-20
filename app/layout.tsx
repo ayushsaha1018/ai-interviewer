@@ -19,24 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            if (typeof Promise.withResolvers !== 'function') {
-              Promise.withResolvers = function () {
-                let resolve, reject;
-                const promise = new Promise((res, rej) => {
-                  resolve = res;
-                  reject = rej;
-                });
-                return { promise, resolve, reject };
-              };
-            }
-          `,
-          }}
-        />
-      </head>
+      <head></head>
       <body
         className={clsx(
           GeistSans.variable,
