@@ -1,4 +1,4 @@
-import pdfParse from "pdf-parse";
+import pdf from "pdf-parse";
 import { zfd } from "zod-form-data";
 
 const schema = zfd.formData({
@@ -20,17 +20,12 @@ export async function POST(request: Request) {
     // Get the file from validated form data
     const file = result.data.file;
 
-    // Convert file to buffer and parse PDF
+    // // Convert file to buffer and parse PDF
     const dataBuffer = Buffer.from(await file.arrayBuffer());
-    const pdfData = await pdfParse(dataBuffer);
-
-    console.log(pdfData);
+    const pdfData = await pdf(dataBuffer);
 
     return new Response(pdfData.text, {
       status: 200,
-      headers: {
-        "Content-Type": "text/plain",
-      },
     });
   } catch (error) {
     console.error("PDF parsing error:", error);
@@ -39,4 +34,8 @@ export async function POST(request: Request) {
       status: 500,
     });
   }
+}
+
+export async function GET(request: Request) {
+  return new Response("Hello");
 }

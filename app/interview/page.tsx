@@ -111,7 +111,7 @@ export default function Home() {
 
     const submittedAt = Date.now();
 
-    const response = await fetch("/api", {
+    const response = await fetch("/api/interview", {
       method: "POST",
       body: formData,
     });

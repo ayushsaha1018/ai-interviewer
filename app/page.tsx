@@ -4,6 +4,7 @@ import { LoadingIcon } from "../lib/icons";
 import { ChangeEvent, useState } from "react";
 import useJobStore from "../store/useJobStore";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function Home() {
   const [formValues, setFormValues] = useState({
@@ -22,7 +23,21 @@ export default function Home() {
     setFormValues({ ...formValues, [name]: value.trim() });
   };
 
-  const handleResumeChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const parsePdf = async () => {
+    try {
+      const formData = new FormData();
+      if (resumeFile) formData.append("file", resumeFile);
+
+      const res = await axios.postForm("/api/parse", formData);
+
+      console.log(res.data);
+      return res.data;
+    } catch (err) {
+      console.error("PDF parsing error:", err);
+    }
+  };
+
+  const handleResumeChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0];
       setResumeFile(file);
@@ -35,7 +50,7 @@ export default function Home() {
 
     try {
       if (!resumeFile) throw new Error("No resume selected");
-      const resumeContent = "abcd";
+      const resumeContent = await parsePdf();
       setJobState({
         jobRole: formValues.jobRole,
         jobDesc: formValues.jobDesc,
