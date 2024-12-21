@@ -20,7 +20,7 @@ export default function Home() {
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value.trim() });
+    setFormValues({ ...formValues, [name]: value });
   };
 
   const parsePdf = async () => {
